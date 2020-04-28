@@ -6,7 +6,13 @@ namespace CAB301_LibraryManagement
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Creating new member......");
+            Member member = new Member();
+            member.RegisterMember();
+            
         }
+
+        
+
     }
 }
