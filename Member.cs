@@ -99,27 +99,37 @@ namespace CAB301_LibraryManagement
 
         }
 
-        public void BorrowDVD()
+        public void BorrowDVD(string movieTitle)
         {
-            if (NumDVDsBorrowed >= 10)
-            {
-                Console.WriteLine("\nSorry, you've already got 10 DVDs borrowed.\n"
-                                + "Please return a DVD before borrowing another one.");
-                return;
-            }
-            Console.WriteLine("Please enter the Movie TITLE: ");
-            DVDsBorrowed = Console.ReadLine();
+            DVDsBorrowed += (movieTitle + ",");
             NumDVDsBorrowed++;
         }
 
-        public void ReturnDVD()
+        public void ReturnDVD(string movieTitle)
         {
+            // Split DVD's Borrowed by ', ' and rejoin without returned movie
+            string[] borrowedMovies = DVDsBorrowed.Split(',');
+            string revisedMovies = "";
+            for (int i = 0; i < borrowedMovies.Length; i++)
+            {
+                if (borrowedMovies[i] == movieTitle)
+                {
+                    revisedMovies += "";
+                }
+                else
+                {
+                    revisedMovies += borrowedMovies[i];
+                }
+            }
+            DVDsBorrowed = revisedMovies;
             NumDVDsBorrowed--;
         }
 
-        public void ShowCurrentlyBorrowed()
+        public void DisplayBorrowed(MovieCollection movieCollection)
         {
-
+            // Split string by ', ' and retrieve from info from BST movieCollection
+            string[] borrowedMovies = DVDsBorrowed.Split(',');
+            movieCollection.DisplayBorrowed(borrowedMovies);
         }
 
         public void ShowTopTen()

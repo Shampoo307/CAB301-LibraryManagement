@@ -21,16 +21,23 @@ namespace CAB301_LibraryManagement
             string response = Console.ReadLine();
             if (response == "1")
             {
+                movieCollection.DisplayAll();
+                Menu(memberCollection, memberIndex, movieCollection);
             }
             else if (response == "2")
             {
                 BorrowDVD(memberCollection, memberIndex, movieCollection);
+                Menu(memberCollection, memberIndex, movieCollection);
             }
             else if (response == "3")
             {
+                ReturnDVD(memberCollection, memberIndex, movieCollection);
+                Menu(memberCollection, memberIndex, movieCollection);
             }
             else if (response == "4")
             {
+                DisplayBorrowed(memberCollection, memberIndex, movieCollection);
+                Menu(memberCollection, memberIndex, movieCollection);
             }
             else if (response == "4")
             {
@@ -62,7 +69,7 @@ namespace CAB301_LibraryManagement
             bool movieExists = movieCollection.MovieExists(movieTitle);
             if (movieExists)
             {
-                memberCollection.members[memberIndex].DVDsBorrowed = Console.ReadLine();
+                memberCollection.members[memberIndex].BorrowDVD(movieTitle);
                 memberCollection.members[memberIndex].NumDVDsBorrowed++;
                 movieCollection.BorrowDVD(movieTitle);
             }
@@ -72,6 +79,32 @@ namespace CAB301_LibraryManagement
                                 + "Press any key to return to menu...", movieTitle);
             }
             
+        }
+
+        public void ReturnDVD(MemberCollection memberCollection, int memberIndex, MovieCollection movieCollection)
+        {
+            Console.WriteLine("Please enter the Movie TITLE: ");
+            string movieTitle = Console.ReadLine();
+            bool movieExists = movieCollection.MovieExists(movieTitle);
+            if (movieExists)
+            {
+                memberCollection.members[memberIndex].ReturnDVD(movieTitle);
+                memberCollection.members[memberIndex].NumDVDsBorrowed--;
+                movieCollection.ReturnDVD(movieTitle);
+            }
+            else
+            {
+                Console.WriteLine("\n{0} is not in the catalog.\n"
+                                + "Press any key to return to menu...", movieTitle);
+            }
+
+        }
+
+        public void DisplayBorrowed(MemberCollection memberCollection, int memberIndex, MovieCollection movieCollection)
+        {
+            Console.WriteLine("Currently Borrowed: ");
+            memberCollection.members[memberIndex].DisplayBorrowed(movieCollection);
+
         }
 
     }

@@ -4,8 +4,18 @@ using System.Text;
 
 namespace CAB301_LibraryManagement
 {
-    class Movie
+    class Movie : IComparable<Movie>
     {
+
+        public Movie LeftChild
+        {
+            get; set;
+        }
+        public Movie RightChild
+        {
+            get; set;
+        }
+
         public string Title
         { 
             get; set; 
@@ -37,6 +47,25 @@ namespace CAB301_LibraryManagement
         public int TimesBorrowed
         {
             get; set;
+        }
+        public bool IsBorrowed
+        {
+            get; set;
+        }
+
+        public Movie()
+        {
+            LeftChild = null;
+            RightChild = null;
+        }
+
+        public int CompareTo(Movie otherMovie)
+        {
+            return this.Title.CompareTo(otherMovie.Title);
+        }
+        public int CompareTo(string movieTitle)
+        {
+            return this.Title.CompareTo(movieTitle);
         }
 
         public void AddDVD()
@@ -115,6 +144,19 @@ namespace CAB301_LibraryManagement
                 default:
                     return "General (G)";
             }
+        }
+
+        public void DisplayMovie()
+        {
+            Console.WriteLine("Title: {0}", Title);
+            Console.WriteLine("Starring: {0}", Starring);
+            Console.WriteLine("Director: {0}", Director);
+            Console.WriteLine("Duration: {0}", Duration);
+            Console.WriteLine("Genre: {0}", Genre);
+            Console.WriteLine("Classification: {0}", Classification);
+            Console.WriteLine("Release Date: {0}", ReleaseDate);
+            Console.WriteLine("Times Borrowed: {0}", TimesBorrowed);
+            Console.WriteLine();
         }
 
 

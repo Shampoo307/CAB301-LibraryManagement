@@ -26,10 +26,12 @@ namespace CAB301_LibraryManagement
             if (response == "1")
             {
                 AddDVD(movieCollection);
+                Menu(memberCollection, movieCollection);
             }
             else if (response == "2")
             {
                 RemoveDVD(movieCollection);
+                Menu(memberCollection, movieCollection);
             }
             else if (response == "3")
             {
@@ -39,6 +41,7 @@ namespace CAB301_LibraryManagement
             else if (response == "4")
             {
                 FindMemberPhone(memberCollection);
+                Menu(memberCollection, movieCollection);
             }
             else if (response == "0")
             {
@@ -57,6 +60,7 @@ namespace CAB301_LibraryManagement
         {
             Movie newMovie = new Movie();
             newMovie.AddDVD();
+            movieCollection.AddDVD(newMovie);
 
         }
 
