@@ -58,27 +58,41 @@ namespace CAB301_LibraryManagement
 
         public void BorrowDVD(MemberCollection memberCollection, int memberIndex, MovieCollection movieCollection)
         {
-            if (memberCollection.members[memberIndex].NumDVDsBorrowed >= 10)
+            if (memberCollection.members[memberIndex].NumDVDsBorrowed < 10)
+            {
+                Console.WriteLine("Please enter the Movie TITLE: ");
+                string movieTitle = Console.ReadLine();
+
+                if (movieCollection.MovieExists(movieTitle))
+                {
+                    if (movieCollection.Search(movieTitle).CopiesAvailable > 0)
+                    {
+                        memberCollection.members[memberIndex].BorrowDVD(movieTitle);
+                        movieCollection.BorrowDVD(movieTitle);
+                        Console.WriteLine("{0} Borrowed!\nPlease any key to return to menu...", movieTitle);
+                    }
+                    else
+                    {
+                        Console.WriteLine("There are no more copies of {0} available.", movieTitle);
+                        Console.WriteLine("Press any key to return to menu...");
+                        Console.ReadLine();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\n{0} is not in the catalog.\n"
+                                    + "Press any key to return to menu...", movieTitle);
+                    Console.ReadLine();
+                }
+            }
+            else 
             {
                 Console.WriteLine("\nSorry, you've already got 10 DVDs borrowed.\n"
-                                + "Please return a DVD before borrowing another one.");
-                return;
-            }
-            Console.WriteLine("Please enter the Movie TITLE: ");
-            string movieTitle = Console.ReadLine();
-            bool movieExists = movieCollection.MovieExists(movieTitle);
-            if (movieExists)
-            {
-                memberCollection.members[memberIndex].BorrowDVD(movieTitle);
-                memberCollection.members[memberIndex].NumDVDsBorrowed++;
-                movieCollection.BorrowDVD(movieTitle);
-            }
-            else
-            {
-                Console.WriteLine("\n{0} is not in the catalog.\n"
-                                + "Press any key to return to menu...", movieTitle);
+                              + "Please return a DVD before borrowing another one.\n"
+                              + "Please any key to return to menu...");
             }
             
+            Console.ReadLine();
         }
 
         public void ReturnDVD(MemberCollection memberCollection, int memberIndex, MovieCollection movieCollection)

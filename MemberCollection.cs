@@ -24,8 +24,9 @@ namespace CAB301_LibraryManagement
                 // Check each user spot before adding
                 for (int i = 0; i < members.Length; i++)
                 {
-                    if (members[i].ToString() == null)
+                    if (members[i] == null)
                     {
+                        member.Index = i;
                         members[i] = member;
                         return i;
                     }
@@ -66,23 +67,19 @@ namespace CAB301_LibraryManagement
 
         public int ValidateLogin(string memberUser, string memberPass)
         {
-            if (memberUser == "tom" && memberPass == "1234")
-            {
-                return 0;
-            }
 
             for (int i = 0; i < members.Length; i++)    // Sequential Search
             {
-                if (members[i].ToString() == null)
+                if (members[i] != null)
                 {
-                    return -1;
-                }
-                else if (memberUser == members[i].UserName
+                    if (memberUser == members[i].UserName
                     && memberPass == members[i].Password)
-                {
-                    return i;
+                    {
+                        return i;
+                    }
                 }
             }
+
             return -1;
         }
 

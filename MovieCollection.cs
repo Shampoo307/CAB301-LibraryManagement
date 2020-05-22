@@ -237,20 +237,19 @@ namespace CAB301_LibraryManagement
 
         public void BorrowDVD(string movieTitle)
         {
-            if (Search(movieTitle) == null)
+            if (Search(movieTitle).CopiesAvailable <= 0)
             {
-                Console.WriteLine("{0} is not a DVD held in this library.", movieTitle);
+                Console.WriteLine("There are no more copies of {0} available.");
             }
             else
             {
-                Search(movieTitle).IsBorrowed = true;
-                Search(movieTitle).TimesBorrowed++;
+                Search(movieTitle).Borrow();
             }
         }
 
         public void ReturnDVD(string movieTitle)
         {
-            Search(movieTitle).IsBorrowed = true;
+            Search(movieTitle).Return();
         }
 
         public void DisplayBorrowed(string[] borrowed)
@@ -258,16 +257,25 @@ namespace CAB301_LibraryManagement
             for (int i = 0; i < borrowed.Length; i++)
             {
                 Movie movie = Search(borrowed[i]);
-                Console.WriteLine("Title: {0}", movie.Title);
-                Console.WriteLine("Starring: {0}", movie.Starring);
-                Console.WriteLine("Director: {0}", movie.Director);
-                Console.WriteLine("Duration: {0}", movie.Duration);
-                Console.WriteLine("Genre: {0}", movie.Genre);
-                Console.WriteLine("Classification: {0}", movie.Classification);
-                Console.WriteLine("Release Date: {0}", movie.ReleaseDate);
-                Console.WriteLine("Times Borrowed: {0}", movie.TimesBorrowed);
-                Console.WriteLine("\n\nPress any key to continue...");
-                Console.ReadLine();
+                if (movie.Title != null)
+                {
+                    Console.WriteLine("Title: {0}", movie.Title);
+                    Console.WriteLine("Starring: {0}", movie.Starring);
+                    Console.WriteLine("Director: {0}", movie.Director);
+                    Console.WriteLine("Duration: {0}", movie.Duration);
+                    Console.WriteLine("Genre: {0}", movie.Genre);
+                    Console.WriteLine("Classification: {0}", movie.Classification);
+                    Console.WriteLine("Release Date: {0}", movie.ReleaseDate);
+                    Console.WriteLine("Times Borrowed: {0}", movie.TimesBorrowed);
+                    //Console.WriteLine("Copies Available: {0}", movie.CopiesAvailable);
+                    Console.WriteLine("\n\nPress any key to continue...");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("Display failed. Please return and try again.");
+                    Console.ReadLine();
+                }
             }
         }
 

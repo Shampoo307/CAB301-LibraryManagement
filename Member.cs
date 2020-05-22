@@ -42,6 +42,10 @@ namespace CAB301_LibraryManagement
         {
             get; set;
         }
+        public int Index
+        {
+            get; set;
+        }
 
         public void RegisterMember()
         {

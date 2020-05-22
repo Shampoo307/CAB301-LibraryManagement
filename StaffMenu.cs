@@ -21,7 +21,7 @@ namespace CAB301_LibraryManagement
                             + "4. Find a registered member's phone number\n"
                             + "0. Return to main menu\n"
                             + "================================\n"
-                            + "Please make a selection (1-4, or 0 to exit): ");
+                            + "Please make a selection (1-4, or 0 to return to main menu): ");
             string response = Console.ReadLine();
             if (response == "1")
             {

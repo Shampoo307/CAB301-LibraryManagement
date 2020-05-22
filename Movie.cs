@@ -48,7 +48,7 @@ namespace CAB301_LibraryManagement
         {
             get; set;
         }
-        public bool IsBorrowed
+        public int CopiesAvailable
         {
             get; set;
         }
@@ -100,7 +100,19 @@ namespace CAB301_LibraryManagement
             Classification = ReturnClassification(classificationNum);
             Console.WriteLine("Please enter the Movie's RELEASE DATE: ");
             ReleaseDate = Console.ReadLine();
-            
+            Console.WriteLine("Please enter the number of copies being added: ");
+            string numCopies = Console.ReadLine();
+            bool isNumCopiesValid = Int32.TryParse(numCopies, out _);
+            if (!isNumCopiesValid)
+            {
+                while (!isNumCopiesValid)
+                {
+                    Console.WriteLine("The number of copies must be only digits. Please re-enter: ");
+                    numCopies = Console.ReadLine();
+                    isNumCopiesValid = Int32.TryParse(numCopies, out _);
+                }
+            }
+            CopiesAvailable = Int32.Parse(numCopies);
         }
 
         private string ReturnGenre(string genreNum)
@@ -156,6 +168,7 @@ namespace CAB301_LibraryManagement
             Console.WriteLine("Classification: {0}", Classification);
             Console.WriteLine("Release Date: {0}", ReleaseDate);
             Console.WriteLine("Times Borrowed: {0}", TimesBorrowed);
+            Console.WriteLine("Copies Available: {0}", CopiesAvailable);
             Console.WriteLine();
         }
 
@@ -163,6 +176,11 @@ namespace CAB301_LibraryManagement
         public void Borrow()
         {
             TimesBorrowed++;
+            CopiesAvailable--;
+        }
+        public void Return()
+        {
+            CopiesAvailable++;
         }
 
     }

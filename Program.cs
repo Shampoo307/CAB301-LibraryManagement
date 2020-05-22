@@ -12,6 +12,8 @@ namespace CAB301_LibraryManagement
             MovieCollection movieCollection = new MovieCollection();
             //MemberCollection.memberCollection = new MemberCollection();
 
+            PopulateMembersAndMovies(memberCollection, movieCollection);
+
             MainMenu(memberCollection, movieCollection);
 
             /*  Console.WriteLine("Creating new member......");
@@ -25,13 +27,13 @@ namespace CAB301_LibraryManagement
             Console.Clear();
             Console.WriteLine("Welcome to the Community Library\n"
                             + "============Main Menu===========\n"
-                            + "1. Staff Login\n" 
+                            + "1. Staff Login\n"
                             + "2. Member Login\n"
                             + "0. Exit\n"
                             + "================================\n"
                             + "Please make a selection (1-2, or 0 to exit): ");
             string response = Console.ReadLine();
-            
+
             if (response == "1")
             {
                 bool isLoggedIn = StaffLogin();
@@ -39,13 +41,15 @@ namespace CAB301_LibraryManagement
                 {
                     StaffMenu staffMenu = new StaffMenu();
                     staffMenu.Menu(memberCollection, movieCollection);
-                } else
+                }
+                else
                 {
                     Console.WriteLine("Incorrect login, press any key to return to menu...");
                     Console.ReadLine();
                     MainMenu(memberCollection, movieCollection);
                 }
-            } else if (response == "2")
+            }
+            else if (response == "2")
             {
                 int memberIndex = MemberLogin(memberCollection);
                 if (memberIndex != -1)
@@ -60,7 +64,8 @@ namespace CAB301_LibraryManagement
                     MainMenu(memberCollection, movieCollection);
                 }
 
-            } else if (response == "0")
+            }
+            else if (response == "0")
             {
 
                 Environment.Exit(0);
@@ -100,13 +105,70 @@ namespace CAB301_LibraryManagement
             Console.WriteLine("Please enter your password: ");
             string memberPass = Console.ReadLine();
             int memberIndex = memberCollection.ValidateLogin(memberUser, memberPass);
-            if (memberIndex == -1)
-            {
-                return -1;
-            }
             return memberIndex;
         }
-        
+
+
+        public static void PopulateMembersAndMovies(MemberCollection memberCollection, MovieCollection movieCollection)
+        {
+            PopulateMembers(memberCollection);
+            PopulateMovies(movieCollection);
+        }
+
+        public static void PopulateMembers(MemberCollection memberCollection)
+        {
+            Member member = new Member();
+            member.FirstName = "Anthony"; member.LastName = "Warden";
+            member.FullName = "Anthony Warden"; member.UserName = "WardenAnthony";
+            member.Password = "2020"; member.ContactNumber = "0400123";
+            member.Address = "5 Flint Street";
+            memberCollection.AddMember(member);
+            Member member1 = new Member();
+            member1.FirstName = "Jemma"; member1.LastName = "Cross";
+            member1.FullName = "Jemma Cross"; member1.UserName = "CrossJemma";
+            member1.Password = "1995"; member1.ContactNumber = "0475982";
+            member1.Address = "8 Crescent Court";
+            memberCollection.AddMember(member1);
+            Member member2 = new Member();
+            member2.FirstName = "Mark"; member2.LastName = "Greenslope";
+            member2.FullName = "Mark Greenslope"; member2.UserName = "GreenslopeMark";
+            member2.Password = "4053"; member2.ContactNumber = "0469287";
+            member2.Address = "12 Adelaide Circuit";
+            memberCollection.AddMember(member2);
+        }
+        public static void PopulateMovies(MovieCollection movieCollection)
+        {
+            Movie movie = new Movie();
+            movie.Title = "Inception"; movie.Starring = "Leonardo DiCaprio";
+            movie.Director = "Christopher Nolan"; movie.Duration = "2 Hours 28 Minutes";
+            movie.Genre = "Thriller"; movie.Classification = "Parental Guidance (PG)";
+            movie.ReleaseDate = "2010"; movie.TimesBorrowed = 7; movie.CopiesAvailable = 3;
+            movieCollection.Insert(movie);
+            Movie movie1 = new Movie();
+            movie1.Title = "Midnight Express"; movie1.Starring = "Brad Davis";
+            movie1.Director = "Alan Parker"; movie1.Duration = "2 Hours 1 Minutes";
+            movie1.Genre = "Drama"; movie1.Classification = "Mature Accompanied (MA15+)";
+            movie1.ReleaseDate = "1978"; movie1.TimesBorrowed = 4; movie1.CopiesAvailable = 1;
+            movieCollection.Insert(movie1);
+            Movie movie2 = new Movie();
+            movie2.Title = "The Incredibles"; movie2.Starring = "Craig T. Nelson";
+            movie2.Director = "Christopher Nolan"; movie2.Duration = "1 Hours 56 Minutes";
+            movie2.Genre = "Family"; movie2.Classification = "Parental Guidance (PG)";
+            movie2.ReleaseDate = "2004"; movie2.TimesBorrowed = 10; movie2.CopiesAvailable = 3;
+            movieCollection.Insert(movie2);
+            Movie movie3 = new Movie();
+            movie3.Title = "Pulp Fiction"; movie3.Starring = "Samuel L. Jackson";
+            movie3.Director = "Quentin Tarantino"; movie3.Duration = "2 Hours 58 Minutes";
+            movie3.Genre = "Comedy"; movie3.Classification = "Mature Accompanied (MA15+)";
+            movie3.ReleaseDate = "1994"; movie3.TimesBorrowed = 6; movie3.CopiesAvailable = 2;
+            movieCollection.Insert(movie3);
+            Movie movie4 = new Movie();
+            movie4.Title = "Blade Runner"; movie4.Starring = "Harrison Ford";
+            movie4.Director = "Ridley Scott"; movie4.Duration = "1 Hours 57 Minutes";
+            movie4.Genre = "Sci-Fi"; movie4.Classification = "Mature Accompanied (MA15+)";
+            movie4.ReleaseDate = "1982"; movie4.TimesBorrowed = 3; movie4.CopiesAvailable = 1;
+            movieCollection.Insert(movie4);
+        }
 
     }
 }
