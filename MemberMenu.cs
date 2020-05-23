@@ -75,14 +75,12 @@ namespace CAB301_LibraryManagement
                     {
                         Console.WriteLine("There are no more copies of {0} available.", movieTitle);
                         Console.WriteLine("Press any key to return to menu...");
-                        Console.ReadLine();
                     }
                 }
                 else
                 {
                     Console.WriteLine("\n{0} is not in the catalog.\n"
                                     + "Press any key to return to menu...", movieTitle);
-                    Console.ReadLine();
                 }
             }
             else 

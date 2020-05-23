@@ -121,7 +121,7 @@ namespace CAB301_LibraryManagement
             // Search for item and parent
             Movie ptr = root; // Search reference
             Movie parent = null; // parent of ptr
-            while((ptr != null) && (movie.CompareTo(ptr) != 0))
+            while ((ptr != null) && (movie.CompareTo(ptr) != 0))
             {
                 parent = ptr;
                 if (movie.CompareTo(ptr) < 0) // Move to left child of ptr
@@ -147,7 +147,7 @@ namespace CAB301_LibraryManagement
                         ptr.Director = ptr.LeftChild.Director;
                         ptr.Duration = ptr.LeftChild.Duration;
                         ptr.Genre = ptr.LeftChild.Genre;
-                        ptr.Classification= ptr.LeftChild.Classification;
+                        ptr.Classification = ptr.LeftChild.Classification;
                         ptr.ReleaseDate = ptr.LeftChild.ReleaseDate;
                         ptr.TimesBorrowed = ptr.LeftChild.TimesBorrowed;
                         ptr.LeftChild = ptr.LeftChild.LeftChild;
@@ -196,7 +196,7 @@ namespace CAB301_LibraryManagement
                         {
                             parent.LeftChild = child;
                         }
-                        else 
+                        else
                         {
                             parent.RightChild = child;
                         }
@@ -209,6 +209,11 @@ namespace CAB301_LibraryManagement
         {
             // BST Insert
             Insert(movie);
+        }
+
+        public void RemoveDVD(string movie)
+        {
+            Delete(Search(movie));
         }
 
         public bool MovieExists(string movieTitle)
@@ -257,7 +262,7 @@ namespace CAB301_LibraryManagement
             for (int i = 0; i < borrowed.Length; i++)
             {
                 Movie movie = Search(borrowed[i]);
-                if (movie.Title != null)
+                if (movie != null)
                 {
                     Console.WriteLine("Title: {0}", movie.Title);
                     Console.WriteLine("Starring: {0}", movie.Starring);
@@ -266,17 +271,12 @@ namespace CAB301_LibraryManagement
                     Console.WriteLine("Genre: {0}", movie.Genre);
                     Console.WriteLine("Classification: {0}", movie.Classification);
                     Console.WriteLine("Release Date: {0}", movie.ReleaseDate);
-                    Console.WriteLine("Times Borrowed: {0}", movie.TimesBorrowed);
-                    //Console.WriteLine("Copies Available: {0}", movie.CopiesAvailable);
-                    Console.WriteLine("\n\nPress any key to continue...");
-                    Console.ReadLine();
+                    Console.WriteLine("Times Borrowed: {0}\n", movie.TimesBorrowed);
                 }
-                else
-                {
-                    Console.WriteLine("Display failed. Please return and try again.");
-                    Console.ReadLine();
-                }
+                
             }
+            Console.WriteLine("\n\nPress any key to continue...");
+            Console.ReadLine();
         }
 
 

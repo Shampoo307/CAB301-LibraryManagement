@@ -105,7 +105,15 @@ namespace CAB301_LibraryManagement
 
         public void BorrowDVD(string movieTitle)
         {
-            DVDsBorrowed += (movieTitle + ",");
+            if (DVDsBorrowed == "")
+            {
+                DVDsBorrowed = movieTitle;
+            }
+            else
+            {
+                DVDsBorrowed += ("," + movieTitle);
+            }
+            
             NumDVDsBorrowed++;
         }
 
@@ -122,7 +130,14 @@ namespace CAB301_LibraryManagement
                 }
                 else
                 {
-                    revisedMovies += borrowedMovies[i];
+                    if (revisedMovies == "")
+                    {
+                        revisedMovies = borrowedMovies[i];
+                    }
+                    else
+                    {
+                        revisedMovies += ("," + borrowedMovies[i]);
+                    }
                 }
             }
             DVDsBorrowed = revisedMovies;
@@ -132,8 +147,11 @@ namespace CAB301_LibraryManagement
         public void DisplayBorrowed(MovieCollection movieCollection)
         {
             // Split string by ', ' and retrieve from info from BST movieCollection
-            string[] borrowedMovies = DVDsBorrowed.Split(',');
-            movieCollection.DisplayBorrowed(borrowedMovies);
+            if (DVDsBorrowed != "")
+            {
+                string[] borrowedMovies = DVDsBorrowed.Split(',');
+                movieCollection.DisplayBorrowed(borrowedMovies);
+            }
         }
 
         public void ShowTopTen()

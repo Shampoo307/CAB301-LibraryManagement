@@ -66,7 +66,19 @@ namespace CAB301_LibraryManagement
 
         public void RemoveDVD(MovieCollection movieCollection)
         {
-
+            Console.WriteLine("Please enter the name of the DVD being removed: ");
+            string movieName = Console.ReadLine();
+            if (movieCollection.MovieExists(movieName))
+            {
+                movieCollection.RemoveDVD(movieName);
+                Console.WriteLine("{0} has been removed.\nPress any key to return to menu...", movieName);
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("{0} is not a movie held in this library.\n"
+                                + "Press any key to return to menu...", movieName);
+            }
         }
 
         public void RegisterMember(MemberCollection memberCollection)
@@ -92,7 +104,22 @@ namespace CAB301_LibraryManagement
 
         public void FindMemberPhone(MemberCollection memberCollection)
         {
-
+            Console.WriteLine("Please enter member's FIRST and LAST name: ");
+            string fullName = Console.ReadLine();
+            int memberIndex = memberCollection.SearchMembers(fullName);
+            if (memberIndex >= 0)
+            {
+                Console.WriteLine("The member {0}'s phone number is: {1}\n",
+                                fullName, memberCollection.members[memberIndex].ContactNumber);
+                Console.WriteLine("Press any key to return to menu...");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("Member {0} was unable to be found.\n", fullName);
+                Console.WriteLine("Press any key to return to menu...");
+                Console.ReadLine();
+            }
         }
 
 

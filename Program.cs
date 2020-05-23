@@ -142,7 +142,7 @@ namespace CAB301_LibraryManagement
             movie.Title = "Inception"; movie.Starring = "Leonardo DiCaprio";
             movie.Director = "Christopher Nolan"; movie.Duration = "2 Hours 28 Minutes";
             movie.Genre = "Thriller"; movie.Classification = "Parental Guidance (PG)";
-            movie.ReleaseDate = "2010"; movie.TimesBorrowed = 7; movie.CopiesAvailable = 3;
+            movie.ReleaseDate = "2010"; movie.TimesBorrowed = 8; movie.CopiesAvailable = 3;
             movieCollection.Insert(movie);
             Movie movie1 = new Movie();
             movie1.Title = "Midnight Express"; movie1.Starring = "Brad Davis";
@@ -168,6 +168,42 @@ namespace CAB301_LibraryManagement
             movie4.Genre = "Sci-Fi"; movie4.Classification = "Mature Accompanied (MA15+)";
             movie4.ReleaseDate = "1982"; movie4.TimesBorrowed = 3; movie4.CopiesAvailable = 1;
             movieCollection.Insert(movie4);
+            Movie movie5 = new Movie();
+            movie5.Title = "The Platform"; movie5.Starring = "Ivan Massague";
+            movie5.Director = "Galder Gaztelu-Urrutia"; movie5.Duration = "1 Hours 34 Minutes";
+            movie5.Genre = "Sci-Fi"; movie5.Classification = "Mature Accompanied (MA15+)";
+            movie5.ReleaseDate = "2019"; movie5.TimesBorrowed = 1; movie5.CopiesAvailable = 1;
+            movieCollection.Insert(movie5);
+            Movie movie6 = new Movie();
+            movie6.Title = "Nightcrawler"; movie6.Starring = "Jake Gyllenhaal";
+            movie6.Director = "Dan Gilroy"; movie6.Duration = "1 Hours 57 Minutes";
+            movie6.Genre = "Thriller"; movie6.Classification = "Mature Accompanied (MA15+)";
+            movie6.ReleaseDate = "2014"; movie6.TimesBorrowed = 5; movie6.CopiesAvailable = 1;
+            movieCollection.Insert(movie6);
+            Movie movie7 = new Movie();
+            movie7.Title = "The Godfather"; movie7.Starring = "Marlon Brando";
+            movie7.Director = "Francis Ford Coppola"; movie7.Duration = "2 Hours 58 Minutes";
+            movie7.Genre = "Drama"; movie7.Classification = "Mature Accompanied (MA15+)";
+            movie7.ReleaseDate = "1972"; movie7.TimesBorrowed = 7; movie7.CopiesAvailable = 2;
+            movieCollection.Insert(movie7);
+            Movie movie8 = new Movie();
+            movie8.Title = "The Two Popes"; movie8.Starring = "Anthony Hopkins";
+            movie8.Director = "Fernando Meirelles"; movie8.Duration = "2 Hours 6 Minutes";
+            movie8.Genre = "Drama"; movie8.Classification = "Parental Guidance (PG)";
+            movie8.ReleaseDate = "2019"; movie.TimesBorrowed = 1; movie8.CopiesAvailable = 1;
+            movieCollection.Insert(movie8);
+            Movie movie9 = new Movie();
+            movie9.Title = "Uncut Gems"; movie9.Starring = "Adam Sandler";
+            movie9.Director = "Josh Safdie"; movie9.Duration = "2 Hours 15 Minutes";
+            movie9.Genre = "Comedy"; movie9.Classification = "Mature Accompanied (MA15+)";
+            movie9.ReleaseDate = "2019"; movie9.TimesBorrowed = 3; movie9.CopiesAvailable = 1;
+            movieCollection.Insert(movie9);
+            Movie movie10 = new Movie();
+            movie10.Title = "My Neighbour Totoro"; movie10.Starring = "Noriko Hidaka";
+            movie10.Director = "Hayao Miyazaki"; movie10.Duration = "1 Hours 28 Minutes";
+            movie10.Genre = "Animated"; movie10.Classification = "General (G)";
+            movie10.ReleaseDate = "1988"; movie10.TimesBorrowed = 12; movie10.CopiesAvailable = 4;
+            movieCollection.Insert(movie10);
         }
 
     }

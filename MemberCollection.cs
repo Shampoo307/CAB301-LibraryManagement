@@ -48,21 +48,19 @@ namespace CAB301_LibraryManagement
             return false;
         }
 
-        private int SearchMembers(string key)
+        public int SearchMembers(string fullName)
         {
-            int i = 0;
-            while (i < members.Length && members[i].FullName != key)
+            for (int i = 0; i < members.Length; i++)
             {
-                i++;
-                
+                if (members[i] != null)
+                {
+                    if (members[i].FullName == fullName)
+                    {
+                        return i;
+                    }
+                }
             }
-            if (i < members.Length)
-            {
-                return i;
-            } else
-            {
-                return -1;
-            }
+            return -1;
         }
 
         public int ValidateLogin(string memberUser, string memberPass)
